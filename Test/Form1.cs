@@ -12,11 +12,10 @@ namespace Test
         {
             InitializeComponent();
             connection = connect;
-            this.comboBox1.Items.AddRange(new object[] {"Техподдержка",
-                        "Продажи",
-                        "Другое" });
+            this.comboBox1.Items.AddRange(new object[] {"РўРµС…РїРѕРґРґРµСЂР¶РєР°",
+                        "РџСЂРѕРґР°Р¶Рё",
+                        "Р”СЂСѓРіРѕРµ" });
             this.comboBox1.SelectedIndex = 0;
-            //this.textBox6.ReadOnly = true;
             this.textBox3.MaxLength = 15;
         }
 
@@ -26,7 +25,6 @@ namespace Test
             SqlCommand command = new SqlCommand();
 
             command.CommandText = insertString;
-            //this.textBox6.Text = command.CommandText;
             command.Connection = connection;
 
             command.Connection.Open();
@@ -36,7 +34,7 @@ namespace Test
             command.Connection.Close();
         }
 
-        private bool IsContact(string dataString)//проверка phone + Email
+        private bool IsContact(string dataString)//РїСЂРѕРІРµСЂРєР° phone + Email
         {
             SqlCommand command = new SqlCommand();
 
@@ -57,7 +55,7 @@ namespace Test
             
         }
 
-        private int amountId(string TableName)//кол-во строк в таблице + 1
+        private int amountId(string TableName)//РєРѕР»-РІРѕ СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ + 1
         {
             int i = 1;
             SqlCommand command = new SqlCommand();
@@ -98,7 +96,6 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.textBox6.Text = this.textBox4.Text;
             string dataString;
             string insertString;
             string mesString;
@@ -112,9 +109,6 @@ namespace Test
 
             Validator validator = new Validator();
 
-            //validator.checkEmail(Email);
-           // validator.checkPhone(Phone);
-            //validator.checkName(Name);
             bool filled = this.Controls.OfType<TextBox>().Any(textBox => textBox.TextLength == 0);
             
 
@@ -126,17 +120,8 @@ namespace Test
                     String PhoneEmail = "Phone='" + Phone + "'" + " AND Email='" + Email + "'";
 
 
-                    //this.textBox6.Text = amountId("Contacts").ToString();
-
-
-
-                    //insert into dbo.Contacts(Id, ContName, Email, Phone) values (1, 'John', 'jphn@Doe', '81912204707')
-
-
                     dataString = "SELECT * FROM Contacts WHERE Phone='" + Phone + "'" + " AND Email='" + Email + "'";
 
-
-                    //insertString=
 
                     if (IsContact(dataString))
                     {
@@ -152,42 +137,15 @@ namespace Test
                         InsertToSql(mesString1);
                     }
                 }
-                else MessageBox.Show("Проверить правильность заполнения полей Телефон и Мэйл","Сообщение",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                else MessageBox.Show("РџСЂРѕРІРµСЂРёС‚СЊ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРѕР»РµР№ РўРµР»РµС„РѕРЅ Рё РњСЌР№Р»","РЎРѕРѕР±С‰РµРЅРёРµ",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }    
-            else MessageBox.Show("Заполните все поля", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ", "РЎРѕРѕР±С‰РµРЅРёРµ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-
-
-
-
-
-            
-
-
-            //select *  from Contacts where Phone='81912204707' AND Email='jphn@Doe'
-
-           
-            
 
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
